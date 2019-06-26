@@ -1,0 +1,70 @@
+<div class="A">
+<form [formGroup]="matForm">
+  <mat-form-field>
+    <input matInput placeholder="Username" formControlName="firstName" (keypress)=keyPress1($event) required>
+    <mat-error *ngIf="matForm.controls?.firstName.errors?.required">enter name</mat-error>
+  </mat-form-field>
+  <br>
+  <mat-form-field>
+      <input matInput type="password" placeholder="password"  formControlName="password" maxlength="10" required>
+      <mat-error *ngIf="matForm.controls?.password.errors?.required">enter password</mat-error>
+  </mat-form-field>
+  <br>
+  <mat-label>Value: </mat-label>
+    <mat-radio-group  matInput placeholder="Value" formControlName="value" checked="checked"  (change)="selectionChange($event.value)" >
+      <mat-radio-button value="S" #static>Static</mat-radio-button>
+      <mat-radio-button value="D" #dynamic>Dynamic</mat-radio-button>
+    </mat-radio-group>
+    <br>
+    <div *ngIf="static.checked" >
+      <mat-form-field >
+        <input matInput placeholder="name" formControlName="Name" required (keypress)=keyPress2($event) required>
+        <mat-error *ngIf="matForm.controls?.Name.errors?.required">enter name</mat-error>
+      </mat-form-field>
+      <br>
+      <mat-form-field>
+          <input matInput placeholder="id" formControlName="id" required>
+          <mat-error *ngIf="matForm.controls?.id.errors?.required">enter id</mat-error>
+      </mat-form-field>
+      <br>
+      <mat-form-field>
+          <input matInput placeholder="mobilenumber" formControlName="mobileNumber" maxlength="10" required>
+          <mat-error *ngIf="matForm.controls?.mobileNumber.errors?.required">enter mobilenumber</mat-error>
+      </mat-form-field>
+      <br>
+      <mat-form-field>
+        <input matInput placeholder="bloodgroup" formControlName="bloodgroup" required>
+        <mat-error *ngIf="matForm.controls?.bloodgroup.errors?.required">enter bloodgroup</mat-error>
+      </mat-form-field>
+      <br>
+      </div>
+      <div *ngIf="dynamic.checked" >
+      <mat-form-field>
+          <input matInput placeholder="Mobilenumber" formControlName="mobileNumber1" maxlength="10" required>
+          <mat-error *ngIf="matForm.controls?.mobileNumber1.errors?.required">enter mobilenumber </mat-error>
+      </mat-form-field>
+      <br>
+      <mat-form-field>
+          <input matInput placeholder="Alternate mobilenumber" required formControlName="alternate_mobileNumber" maxlength="10">
+          <mat-error *ngIf="matForm.controls?.alternate_mobileNumber.errors?.required">enter alternate mobileNumber</mat-error>
+      </mat-form-field>
+      <br>
+      <mat-form-field>
+          <input matInput placeholder="Emailid" formControlName="emailid" required >
+          <mat-error *ngIf="matForm.controls?.emailid.errors?.required">enter emailid</mat-error>
+      </mat-form-field>
+      <br>
+      <mat-form-field>
+          <input matInput placeholder="Alternate emailid" formControlName="alternate_emailid"  required>
+          <mat-error *ngIf="matForm.controls?.alternate_emailid.errors?.required">enter alternate emailid</mat-error>
+      </mat-form-field>
+      <br>
+      </div>
+    
+    <button class="button" (click)="submit()" mat-raised-button [disabled]="matForm.invalid">Save</button>
+    <!-- <button mat-raised-button [disabled]="matForm.invalid">Save</button> -->
+</form> 
+<br>
+
+
+{{matForm.value | json}}

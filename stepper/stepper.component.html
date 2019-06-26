@@ -1,0 +1,93 @@
+<!-- <button mat-raised-button (click)="isLinear = !isLinear" id="toggle-linear">
+    {{!isLinear ? 'Enable linear mode' : 'Disable linear mode'}}
+  </button> -->
+<mat-horizontal-stepper [linear]="isLinear" #stepper>
+  <mat-step [stepControl]="firstformGroup">
+    <form [formGroup]="firstformGroup">
+      <ng-template matStepLabel>Graduation Details</ng-template>
+      <mat-form-field>
+        <input matInput placeholder="firstName" formControlName="firstName" (keypress)=keyPress1($event)>
+        <mat-error *ngIf="firstformGroup.controls?.firstName.errors?.required">Enter a Firstname</mat-error>
+      </mat-form-field>
+      <br>
+      <mat-form-field>
+        <input matInput placeholder="Rollnumber" formControlName="rollNumber">
+        <mat-error *ngIf="firstformGroup.controls?.rollNumber.errors?.required">Enter a Rollnumber</mat-error>
+      </mat-form-field>
+      <br>
+      <mat-form-field>
+        <input matInput placeholder="College name" formControlName="collegeName" (keypress)=keyPress2($event)>
+        <mat-error *ngIf="firstformGroup.controls?.collegeName.errors?.required">Enter a collegeName</mat-error>
+      </mat-form-field>
+      <br>
+      <mat-form-field>
+        <mat-select  placeholder="Department" formControlName="department">
+          <mat-option value="CSE">CSE</mat-option>
+          <mat-option value="ECE">ECE</mat-option>
+          <mat-option value="EEE">EEE</mat-option>
+          <mat-option value="CIVIL">CIVIL</mat-option>
+          <mat-option value="MECH">MECH</mat-option>
+        </mat-select>
+      </mat-form-field>
+      <br>
+      <div>
+          <button mat-button matStepperNext [disabled]="!firstformGroup.valid" >Next</button>
+      </div>
+      </form>
+      {{firstformGroup.value | json}}
+    </mat-step> 
+     <mat-step [stepControl]="secondformGroup">
+      <form [formGroup]="secondformGroup">
+      <ng-template matStepLabel>Personal Details</ng-template>
+      <mat-form-field>
+        <input matInput placeholder="FirstName" formControlName="firstName" (keypress)=keyPress3($event)>
+        <mat-error *ngIf="secondformGroup.controls?.firstName.errors?.required">Enter a Firstname</mat-error>
+      </mat-form-field>
+      <br>
+      <mat-form-field>
+        <input matInput placeholder="LastName" formControlName="lastName" (keypress)=keyPress4($event)>
+        <mat-error *ngIf="secondformGroup.controls?.lastName.errors?.required">Enter a Lastname</mat-error>
+      </mat-form-field>
+      <br>
+      <mat-form-field>
+        <input matInput placeholder="Email" formControlName="email">
+        <mat-error *ngIf="secondformGroup.controls?.email.errors?.required">Enter a Email</mat-error>
+      </mat-form-field>
+      <br>
+      <mat-form-field>
+        <input matInput placeholder="Mobile number" formControlName="mobileNumber" maxlength="10"  (keypress)=keyPress5($event)>
+        <mat-error *ngIf="secondformGroup.controls?.mobileNumber.errors?.required">Enter a MobileNumber</mat-error>
+      </mat-form-field>
+      <br>
+      <div>
+          <button mat-button matStepperPrevious  [disabled]="!secondformGroup.valid">Back</button>
+          <button mat-button matStepperNext  [disabled]="!secondformGroup.valid">Next</button>
+        </div>
+    </form> 
+    {{secondformGroup.value | json}} 
+   </mat-step> 
+   <mat-step [stepControl]="thirdformGroup">
+   <form [formGroup]="thirdformGroup">
+   <ng-template matStepLabel>Address Details</ng-template>
+    <mat-form-field>
+      <input matInput placeholder="Current Address" formControlName="currentAddress">
+      <mat-error *ngIf="thirdformGroup.controls?.currentAddress.errors?.required">Enter a Current Address</mat-error>
+    </mat-form-field>
+    <br>
+    <mat-form-field>
+      <input matInput placeholder="Permanent Address" formControlName="permanentAddress">
+      <mat-error *ngIf="thirdformGroup.controls?.permanentAddress.errors?.required">Enter a Permanent Address</mat-error>
+  </mat-form-field>
+  <br>
+  <button mat-button matStepperPrevious  [disabled]="!thirdformGroup.valid">Back</button>
+  <button mat-button matStepperNext  [disabled]="!thirdformGroup.valid">Next</button>
+  </form>
+   </mat-step>
+   <mat-step>
+      <ng-template matStepLabel>Done</ng-template>
+      <div>
+        <button mat-button matStepperPrevious>Back</button>
+        <button mat-button (click)="stepper.reset()">Reset</button>
+      </div>
+    </mat-step>
+</mat-horizontal-stepper>

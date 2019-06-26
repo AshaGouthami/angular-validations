@@ -1,0 +1,18 @@
+<div class="container">
+    <h4>LOGIN FORM</h4>
+    <form [formGroup]="Form">
+  <mat-form-field>
+    <input matInput placeholder="Firstname" formControlName="firstName" (keypress)=keyPress1($event)>
+    <mat-error *ngIf="Form.controls?.firstName.errors?.required">Enter a Firstname</mat-error>
+  </mat-form-field> 
+  <br>
+  <mat-form-field>
+    <input matInput placeholder="Lastname" formControlName="lastName" (keypress)=keyPress2($event)>
+    <mat-error *ngIf="Form.controls?.lastName.errors?.required">Enter a Lastname</mat-error>
+  </mat-form-field>
+  <br>
+  <button mat-raised-button (click)="openDialog()">click</button>
+  <br>
+  <button mat-raised-button [disabled]="Form.invalid">SUBMIT</button>
+</form>
+</div>

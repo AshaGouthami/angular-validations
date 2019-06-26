@@ -1,0 +1,10 @@
+.container{
+    width:400px;
+    height: 350px;
+    margin: auto;
+    text-align: center;
+    border:2px solid black
+}
+button{
+    margin-top: 20px;
+}
